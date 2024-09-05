@@ -1,0 +1,5 @@
+Bulbasaur can be found in the one of the following locations: 
+cerulean-city-area
+pallet-town-area
+lumiose-city-area
+alola-route-2-main
