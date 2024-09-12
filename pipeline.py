@@ -15,7 +15,7 @@ class ChatPDF: #Change PDF to text
     chain = None
 
     def __init__(self):
-        self.model = ChatOllama(model="mistral")
+        self.model = ChatOllama(model="llama3.1")
         self.text_splitter = RecursiveCharacterTextSplitter(chunk_size=1024, chunk_overlap=100)
         self.prompt = PromptTemplate.from_template(
             """
@@ -27,6 +27,7 @@ class ChatPDF: #Change PDF to text
             Answer: [/INST]
             """
         )
+        
 
     def ingest(self, pdf_file_path: str):
         docs = TextLoader(file_path=pdf_file_path).load()
@@ -49,7 +50,7 @@ class ChatPDF: #Change PDF to text
 
     def ask(self, query: str):
         if not self.chain:
-            return "Please, add a PDF document first."
+            return "Please, add a TXT document first."
 
         return self.chain.invoke(query)
 
