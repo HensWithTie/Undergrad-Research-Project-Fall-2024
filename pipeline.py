@@ -32,7 +32,7 @@ class ChatText:
 
     def ingest(self, pdf_file_path: str):
         
-        docs = TextLoader("AllEntry.txt").load()
+        docs = TextLoader(file_path=pdf_file_path).load()
         chunks = self.text_splitter.split_documents(docs)
         chunks = filter_complex_metadata(chunks)
 
