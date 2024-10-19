@@ -9,7 +9,8 @@ from langchain.prompts import PromptTemplate
 from langchain.vectorstores.utils import filter_complex_metadata
 
 
-class ChatPDF: #Change PDF to text
+
+class ChatText:
     vector_store = None
     retriever = None
     chain = None
@@ -19,9 +20,9 @@ class ChatPDF: #Change PDF to text
         self.text_splitter = RecursiveCharacterTextSplitter(chunk_size=1024, chunk_overlap=100)
         self.prompt = PromptTemplate.from_template(
             """
-            <s> [INST] Vous êtes un assistant pour les tâches de réponse aux questions. Utilisez les éléments de contexte suivants pour répondre à la question. 
-            Si vous ne connaissez pas la réponse, dites simplement que vous ne savez pas.. Utilisez trois phrases
-             maximum et soyez concis dans votre réponse. [/INST] </s> 
+            <s> [INST] You are a helper for question answering tasks. Use the following context to answer the question. 
+            If you don't know the answer, just say you don't know. Use three sentences
+            maximum and be concise in your response. [/INST] </s> 
             [INST] Question: {question} 
             Context: {context} 
             Answer: [/INST]
@@ -30,7 +31,8 @@ class ChatPDF: #Change PDF to text
         
 
     def ingest(self, pdf_file_path: str):
-        docs = TextLoader(file_path=pdf_file_path).load()
+        
+        docs = TextLoader("AllEntry.txt").load()
         chunks = self.text_splitter.split_documents(docs)
         chunks = filter_complex_metadata(chunks)
 

@@ -2,9 +2,9 @@ import os
 import tempfile
 import streamlit as st
 from streamlit_chat import message
-from pipeline import ChatPDF
+from pipeline import ChatText
 
-st.set_page_config(page_title="ChatPDF")
+st.set_page_config(page_title="ChatText")
 
 
 def display_messages():
@@ -42,9 +42,9 @@ def read_and_save_file():
 def page():
     if len(st.session_state) == 0:
         st.session_state["messages"] = []
-        st.session_state["assistant"] = ChatPDF()
+        st.session_state["assistant"] = ChatText()
 
-    st.header("ChatPDF")
+    st.header("ChatText")
 
     st.subheader("Upload a document")
     st.file_uploader(
