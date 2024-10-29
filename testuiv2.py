@@ -63,7 +63,8 @@ def page():
     display_messages()
     st.text_input("Message", key="user_input", on_change=process_input)
 
-    read_and_save_file()
+    if not st.session_state["assistant"].chain:
+        read_and_save_file()
 
 
 if __name__ == "__main__":
