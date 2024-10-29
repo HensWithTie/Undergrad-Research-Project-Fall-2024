@@ -34,7 +34,6 @@ def read_and_save_file():
         #     tf.write(file.getbuffer())
         #     file_path = tf.name
 
-    print("test")
     filename = "Gen1.txt"
     with st.session_state["ingestion_spinner"], st.spinner(f"Ingesting {filename}"):
         st.session_state["assistant"].ingest(filename)
@@ -68,4 +67,5 @@ def page():
 
 
 if __name__ == "__main__":
+    print("page")
     page()
