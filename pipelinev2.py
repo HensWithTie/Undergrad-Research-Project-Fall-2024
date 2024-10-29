@@ -31,8 +31,7 @@ class ChatText:
         
 
     def ingest(self, pdf_file_path: str):
-
-        pdf_file_path = open("Gen1.txt","r")
+        pdf_file_path = "/home/jonfall24/Undergrad-Research-Project-Fall-2024/Gen1.txt"
         docs = TextLoader(file_path=pdf_file_path).load()
         chunks = self.text_splitter.split_documents(docs)
         chunks = filter_complex_metadata(chunks)
