@@ -27,16 +27,18 @@ def process_input():
 def read_and_save_file():
     st.session_state["assistant"].clear()
     st.session_state["messages"] = []
-    st.session_state["user_input"] = ""
+    #st.session_state["user_input"] = ""
 
-    for file in st.session_state["file_uploader"]:
-        with tempfile.NamedTemporaryFile(delete=False) as tf:
-            tf.write(file.getbuffer())
-            file_path = tf.name
+    #for file in st.session_state["file_uploader"]:
+        # with tempfile.NamedTemporaryFile(delete=False) as tf:
+        #     tf.write(file.getbuffer())
+        #     file_path = tf.name
 
-        with st.session_state["ingestion_spinner"], st.spinner(f"Ingesting {file.name}"):
-            st.session_state["assistant"].ingest("Gen1.txt")
-        os.remove(file_path)
+    print("test")
+    filename = "Gen1.txt"
+    with st.session_state["ingestion_spinner"], st.spinner(f"Ingesting {filename}"):
+        st.session_state["assistant"].ingest(filename)
+    #os.remove(file_path)
 
 
 def page():
