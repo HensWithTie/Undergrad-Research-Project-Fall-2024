@@ -46,15 +46,16 @@ def page():
 
     st.header("ChatText")
 
-    st.subheader("Upload a document")
-    st.file_uploader(
-        "Upload document",
-        type=["txt"],
-        key="file_uploader",
-        on_change=read_and_save_file,
-        label_visibility="collapsed",
-        accept_multiple_files=True,
-    )
+    #st.subheader("Upload a document")
+    
+    # st.file_uploader(
+    #     "Upload document",
+    #     type=["txt"],
+    #     key="file_uploader",
+    #     on_change=read_and_save_file,
+    #     label_visibility="collapsed",
+    #     accept_multiple_files=True,
+    # )
 
     st.session_state["ingestion_spinner"] = st.empty()
 
