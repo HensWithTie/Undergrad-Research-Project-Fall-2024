@@ -2,7 +2,7 @@ import os
 import tempfile
 import streamlit as st
 from streamlit_chat import message
-from pipeline import ChatText
+from pipelinev2 import ChatText
 
 st.set_page_config(page_title="ChatText")
 
@@ -35,7 +35,7 @@ def read_and_save_file():
             file_path = tf.name
 
         with st.session_state["ingestion_spinner"], st.spinner(f"Ingesting {file.name}"):
-            st.session_state["assistant"].ingest(file_path)
+            st.session_state["assistant"].ingest("Gen1.txt")
         os.remove(file_path)
 
 
