@@ -31,7 +31,8 @@ class ChatText:
         
 
     def ingest(self, pdf_file_path: str):
-        
+
+        pdf_file_path = open("Gen1.txt","r")
         docs = TextLoader(file_path=pdf_file_path).load()
         chunks = self.text_splitter.split_documents(docs)
         chunks = filter_complex_metadata(chunks)
@@ -50,11 +51,11 @@ class ChatText:
                       | self.model
                       | StrOutputParser())
 
-    def ask(self, query: str):
-        if not self.chain:
-            return "Please, add a TXT document first."
+    #def ask(self, query: str):
+    #    if not self.chain:
+    #        return "Please, add a TXT document first."
 
-        return self.chain.invoke(query)
+#        return self.chain.invoke(query)
 
     def clear(self):
         self.vector_store = None
