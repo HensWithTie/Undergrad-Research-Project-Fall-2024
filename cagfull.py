@@ -51,7 +51,7 @@ tokenizer = AutoTokenizer.from_pretrained(model_name, token="hf_zRhGQHyffLdHyxsf
 model = AutoModelForCausalLM.from_pretrained(
     model_name,
     torch_dtype=torch.float16 if torch.cuda.is_available() else torch.float32,
-    device_map="cuda",
+    device_map="cpu",
     trust_remote_code=True,
     token="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"
 )
