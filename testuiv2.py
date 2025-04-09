@@ -3,6 +3,7 @@ import tempfile
 import streamlit as st
 from streamlit_chat import message
 from pipelinev2 import ChatText
+import time
 
 st.set_page_config(page_title="ChatText")
 
@@ -25,6 +26,7 @@ def process_input():
 
 
 def read_and_save_file():
+    stime = time.time()
     st.session_state["assistant"].clear()
     st.session_state["messages"] = []
     #st.session_state["user_input"] = ""
@@ -34,10 +36,16 @@ def read_and_save_file():
         #     tf.write(file.getbuffer())
         #     file_path = tf.name
 
-    filename = "Gen1.txt"
+    #filename = "pokedict.json"
+    #filename = "Gen1.txt"
+    #filename = "Gen1Sample.txt"
+    filename = "Jon.txt"
     with st.session_state["ingestion_spinner"], st.spinner(f"Ingesting {filename}"):
         st.session_state["assistant"].ingest(filename)
     #os.remove(file_path)
+    etime = time.time()
+    ttime = etime - stime
+    print(f"total time: {ttime:.4f} seconds")
 
 
 def page():
