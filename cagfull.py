@@ -47,18 +47,23 @@ def clean_up(cache: DynamicCache, origin_len: int):
         cache.key_cache[i] = cache.key_cache[i][:, :, :origin_len, :]
         cache.value_cache[i] = cache.value_cache[i][:, :, :origin_len, :]
 
+def get_device_map() -> str:
+    return 'cuda' if torch.cuda.is_available() else 'cpu'
+
+device = get_device_map() #cpu
+
 model_name = "mistralai/Mistral-7B-Instruct-v0.1"
 tokenizer = AutoTokenizer.from_pretrained(model_name, token="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", trust_remote_code=True)
 model = AutoModelForCausalLM.from_pretrained(
     model_name,
     torch_dtype=torch.float16 if torch.cuda.is_available() else torch.float32,
-    device_map="auto",
+    device_map=device,
     trust_remote_code=True,
     token="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"
 )
 disk_offload(model=model, offload_dir="offload")
-device = "cuda" if torch.cuda.is_available() else "cpu"
-model.to(device)
+#device = "cuda" if torch.cuda.is_available() else "cpu"
+#model.to(device)
 print(f"Loaded {model_name}.")
 
 stime = time.time()
