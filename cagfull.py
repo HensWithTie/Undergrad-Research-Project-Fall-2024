@@ -6,7 +6,7 @@ import time
 from accelerate import disk_offload
 
 def generate(model, input_ids: torch.Tensor, past_key_values, max_new_tokens: int = 50) -> torch.Tensor:
-    device = model.model.embed_tokens.weight.device
+    device = model.model.embed_tokens.weight.resize(128526, 3072).device
     origin_len = input_ids.shape[-1]
     input_ids = input_ids.to(device)
     output_ids = input_ids.clone()
@@ -30,7 +30,7 @@ def generate(model, input_ids: torch.Tensor, past_key_values, max_new_tokens: in
     return output_ids[:, origin_len:]
 
 def get_kv_cache(model, tokenizer, prompt: str) -> DynamicCache:
-    device = model.model.embed_tokens.weight.device
+    device = model.model.embed_tokens.weight.resize(128526, 3072).device
     input_ids = tokenizer(prompt, return_tensors="pt").input_ids.to(device)
     cache = DynamicCache()
 
