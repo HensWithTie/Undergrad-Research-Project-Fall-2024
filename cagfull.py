@@ -52,9 +52,9 @@ def get_device_map() -> str:
 
 device = get_device_map() #cpu
 
-#model_name = "meta-llama/Llama-3.2-3B-Instruct"
+model_name = "meta-llama/Llama-3.2-3B-Instruct"
 #model_name= "meta-llama/Llama-3.2-1B"
-model_name = "mistralai/Mistral-7B-Instruct-v0.1"
+#model_name = "mistralai/Mistral-7B-Instruct-v0.1"
 tokenizer = AutoTokenizer.from_pretrained(model_name, token="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", trust_remote_code=True)
 model = AutoModelForCausalLM.from_pretrained(
     model_name,
