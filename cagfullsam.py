@@ -58,14 +58,12 @@ model_name = "meta-llama/Llama-3.2-3B-Instruct"
 tokenizer = AutoTokenizer.from_pretrained(model_name, token="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", trust_remote_code=True)
 model = AutoModelForCausalLM.from_pretrained(
     model_name,
-    torch_dtype=torch.float16,
-     # if torch.cuda.is_available() else torch.float32,
-    low_cpu_mem_usage=True,
+    torch_dtype=torch.float16 if torch.cuda.is_available() else torch.float32,
     device_map=device,
     trust_remote_code=True,
     token="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"
-).cpu()
-disk_offload(model=model, offload_dir="offload")
+)
+#disk_offload(model=model, offload_dir="offload")
 #device = "cuda" if torch.cuda.is_available() else "cpu"
 #model.to(device)
 print(f"Loaded {model_name}.")
