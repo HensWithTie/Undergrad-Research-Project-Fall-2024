@@ -37,9 +37,9 @@ def read_and_save_file():
         #     file_path = tf.name
 
     #filename = "pokedict.json"
-    #filename = "Gen1.txt"
+    filename = "Gen1.txt"
     #filename = "Gen1Sample.txt"
-    filename = "Jon.txt"
+    #filename = "Jon.txt"
     with st.session_state["ingestion_spinner"], st.spinner(f"Ingesting {filename}"):
         st.session_state["assistant"].ingest(filename)
     #os.remove(file_path)
