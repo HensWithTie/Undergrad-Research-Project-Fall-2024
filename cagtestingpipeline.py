@@ -23,7 +23,7 @@ Question:
 """.strip()
 
 model_client = ChatOllama(model='llama3.1')
-print(model_client + " loaded!")
+print("Llama3.1 loaded!")
 
 stime = time.time()
 
