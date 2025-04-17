@@ -18,6 +18,8 @@ import time
 with open("Jon.txt", "r", encoding="utf-8") as f:
     doc_text = f.read()
 
+prompt = "What does Jonathan like?"
+
 system_prompt = f"""
 <|system|>
 You are an assistant who provides concise factual answers. You will read the text file
@@ -26,9 +28,9 @@ and respond with a max of 3 sentences. If you do not know, say "I don't know".
 Context:
 {doc_text}
 Question:
+{prompt}
 """.strip()
 
 model_client = ChatOllama(model='llama3.1')
-prompt = "What does Jonathan like?"
-response = model_client.invoke(prompt)
+response = model_client.invoke(system_prompt)
 print(response)
