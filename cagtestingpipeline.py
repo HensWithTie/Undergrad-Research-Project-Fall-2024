@@ -1,13 +1,4 @@
-from langchain_community.vectorstores import Chroma
 from langchain_community.chat_models import ChatOllama
-from langchain_community.embeddings import FastEmbedEmbeddings
-from langchain.schema.output_parser import StrOutputParser
-from langchain_community.document_loaders import TextLoader #USE TEXTLOADER
-from langchain_community.document_loaders import JSONLoader
-from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.schema.runnable import RunnablePassthrough
-from langchain.prompts import PromptTemplate
-from langchain.vectorstores.utils import filter_complex_metadata
 
 #CAG IMPORTS
 import torch
@@ -32,5 +23,13 @@ Question:
 """.strip()
 
 model_client = ChatOllama(model='llama3.1')
+print(model_client + " loaded!")
+
+stime = time.time()
+
 response = model_client.invoke(system_prompt)
 print(response)
+
+etime = time.time()
+ttime = etime - stime
+print(f"total time: {ttime:.4f} seconds")
