@@ -58,7 +58,7 @@ model_name= "meta-llama/Llama-3.2-1B"
 tokenizer = AutoTokenizer.from_pretrained(model_name, token="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", trust_remote_code=True)
 model = AutoModelForCausalLM.from_pretrained(
     model_name,
-    torch_dtype=torch.float16 , # if torch.cuda.is_available() else torch.float32,
+    torch_dtype=torch.float16 if torch.cuda.is_available() else torch.float32,
     device_map=device,
     trust_remote_code=True,
     token="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"
