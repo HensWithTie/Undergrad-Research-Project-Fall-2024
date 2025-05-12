@@ -62,7 +62,7 @@ model = AutoModelForCausalLM.from_pretrained(
     device_map=device,
     trust_remote_code=True,
     token="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"
-)
+
 #disk_offload(model=model, offload_dir="offload")
 #device = "cuda" if torch.cuda.is_available() else "cpu"
 #model.to(device)
