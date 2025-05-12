@@ -58,7 +58,7 @@ model_name= "meta-llama/Llama-3.2-1B"
 tokenizer = AutoTokenizer.from_pretrained(model_name, token="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", trust_remote_code=True)
 model = AutoModelForCausalLM.from_pretrained(
     model_name,
-    torch_dtype=torch.float16 if torch.cuda.is_available() else torch.float32,
+    torch_dtype=torch.float16 , # if torch.cuda.is_available() else torch.float32,
     device_map=device,
     trust_remote_code=True,
     token="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"
@@ -76,7 +76,7 @@ with open("Gen1Sample.txt", "r", encoding="utf-8") as f:
 system_prompt = f"""
 <|system|>
 You are an assistant who provides concise factual answers. You will read the text file
-and respond with a max of 3 sentences. If you do not know, say "I don't know".
+and respond with the right answer. If you do not know, say "I don't know".
 <|user|>
 Context:
 {doc_text}
@@ -91,7 +91,7 @@ ttime = etime - stime
 print(f"total time: {ttime:.4f} seconds")
 
 stime = time.time()
-question1 = input("Enter your query 1: ") #Change question to user input
+question1 = "What is the index 1 called?" #Change question to user input
 clean_up(ronan_cache, origin_len)
 input_ids_q1 = tokenizer(question1 + "\n", return_tensors="pt").input_ids.to(device)
 gen_ids_q1 = generate(model, input_ids_q1, ronan_cache)
@@ -104,7 +104,7 @@ ttime = etime - stime
 print(f"total time: {ttime:.4f} seconds")
 
 stime = time.time()
-question2 = input("Enter your query 2: ") #Change question to user input
+question2 = "What does Jonathan like?" #Change question to user input
 clean_up(ronan_cache, origin_len)
 input_ids_q2 = tokenizer(question2 + "\n", return_tensors="pt").input_ids.to(device)
 gen_ids_q2 = generate(model, input_ids_q2, ronan_cache)
@@ -117,7 +117,7 @@ ttime = etime - stime
 print(f"total time: {ttime:.4f} seconds")
 
 stime = time.time()
-question3 = input("Enter your query 3: ") #Change question to user input
+question3 = "What is the document about?" #Change question to user input
 clean_up(ronan_cache, origin_len)
 input_ids_q3 = tokenizer(question3 + "\n", return_tensors="pt").input_ids.to(device)
 gen_ids_q3 = generate(model, input_ids_q3, ronan_cache)
@@ -130,7 +130,7 @@ ttime = etime - stime
 print(f"total time: {ttime:.4f} seconds")
 
 stime = time.time()
-question4 = input("Enter your query 4: ") #Change question to user input
+question4 = "Does Jonathan like Magic the Gathering?" #Change question to user input
 clean_up(ronan_cache, origin_len)
 input_ids_q4 = tokenizer(question4 + "\n", return_tensors="pt").input_ids.to(device)
 gen_ids_q4 = generate(model, input_ids_q4, ronan_cache)
