@@ -91,7 +91,7 @@ ttime = etime - stime
 print(f"total time: {ttime:.4f} seconds")
 
 stime = time.time()
-question1 = "What is the index 1 called?" #Change question to user input
+question1 = input("Enter your query 1: ") #Change question to user input
 clean_up(ronan_cache, origin_len)
 input_ids_q1 = tokenizer(question1 + "\n", return_tensors="pt").input_ids.to(device)
 gen_ids_q1 = generate(model, input_ids_q1, ronan_cache)
@@ -104,7 +104,7 @@ ttime = etime - stime
 print(f"total time: {ttime:.4f} seconds")
 
 stime = time.time()
-question2 = "What does Jonathan like?" #Change question to user input
+question2 = input("Enter your query 2: ") #Change question to user input
 clean_up(ronan_cache, origin_len)
 input_ids_q2 = tokenizer(question2 + "\n", return_tensors="pt").input_ids.to(device)
 gen_ids_q2 = generate(model, input_ids_q2, ronan_cache)
@@ -117,7 +117,7 @@ ttime = etime - stime
 print(f"total time: {ttime:.4f} seconds")
 
 stime = time.time()
-question3 = "What is the document about?" #Change question to user input
+question3 = input("Enter your query 3: ") #Change question to user input
 clean_up(ronan_cache, origin_len)
 input_ids_q3 = tokenizer(question3 + "\n", return_tensors="pt").input_ids.to(device)
 gen_ids_q3 = generate(model, input_ids_q3, ronan_cache)
@@ -130,7 +130,7 @@ ttime = etime - stime
 print(f"total time: {ttime:.4f} seconds")
 
 stime = time.time()
-question4 = "Does Jonathan like Magic the Gathering?" #Change question to user input
+question4 = input("Enter your query 4: ") #Change question to user input
 clean_up(ronan_cache, origin_len)
 input_ids_q4 = tokenizer(question4 + "\n", return_tensors="pt").input_ids.to(device)
 gen_ids_q4 = generate(model, input_ids_q4, ronan_cache)
