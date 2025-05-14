@@ -49,6 +49,7 @@ def read_and_save_file():
 
 
 def page():
+    stime = time.time()
     if len(st.session_state) == 0:
         st.session_state["messages"] = []
         st.session_state["assistant"] = ChatText()
@@ -68,7 +69,6 @@ def page():
 
     st.session_state["ingestion_spinner"] = st.empty()
 
-    stime = time.time()
     display_messages()
     st.text_input("Message", key="user_input", on_change=process_input)
     etime = time.time()
