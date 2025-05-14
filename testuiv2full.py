@@ -10,17 +10,13 @@ st.set_page_config(page_title="ChatText")
 
 def display_messages():
     st.subheader("Chat")
-    stime = time.time()
     for i, (msg, is_user) in enumerate(st.session_state["messages"]):
         message(msg, is_user=is_user, key=str(i))
     st.session_state["thinking_spinner"] = st.empty()
 
-    etime = time.time()
-    ttime = etime - stime
-    print(f"total response time: {ttime:.4f} seconds")
-
 
 def process_input():
+    stime = time.time()
     if st.session_state["user_input"] and len(st.session_state["user_input"].strip()) > 0:
         user_text = st.session_state["user_input"].strip()
         with st.session_state["thinking_spinner"], st.spinner(f"Thinking"):
@@ -28,6 +24,10 @@ def process_input():
 
         st.session_state["messages"].append((user_text, True))
         st.session_state["messages"].append((agent_text, False))
+
+        etime = time.time()
+        ttime = etime - stime
+        print(f"total response time: {ttime:.4f} seconds")
 
 
 def read_and_save_file():
