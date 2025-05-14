@@ -69,7 +69,11 @@ def page():
     st.session_state["ingestion_spinner"] = st.empty()
 
     display_messages()
+    stime = time.time()
     st.text_input("Message", key="user_input", on_change=process_input)
+    etime = time.time()
+    ttime = etime - stime
+    print(f"total response time: {ttime:.4f} seconds")
 
     if not st.session_state["assistant"].chain:
         read_and_save_file()
