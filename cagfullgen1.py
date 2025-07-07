@@ -55,13 +55,13 @@ device = get_device_map() #cpu
 model_name = "meta-llama/Llama-3.2-3B-Instruct"
 #model_name= "meta-llama/Llama-3.2-1B"
 #model_name = "mistralai/Mistral-7B-Instruct-v0.1"
-tokenizer = AutoTokenizer.from_pretrained(model_name, token="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", trust_remote_code=True)
+tokenizer = AutoTokenizer.from_pretrained(model_name, token="", trust_remote_code=True) #INSERT HF TOKEN IN ""
 model = AutoModelForCausalLM.from_pretrained(
     model_name,
     torch_dtype=torch.float16 if torch.cuda.is_available() else torch.float32,
     device_map=device,
     trust_remote_code=True,
-    token="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"
+    token="" #INSERT HF TOKEN IN ""
 )
 #disk_offload(model=model, offload_dir="offload")
 #device = "cuda" if torch.cuda.is_available() else "cpu"
